@@ -15,9 +15,6 @@ class MainActivity: FlutterActivity() {
     private val androidViewId = "INTEGRATION_ANDROID"
     private val methodChannelId = "CALL_METHOD"
     private val intentMessageId = "CALL"
-
-    private var receiver: BroadcastReceiver? = null
-
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         flutterEngine
@@ -40,11 +37,4 @@ class MainActivity: FlutterActivity() {
         }
     }
 
-    fun createReceiver(events: EventChannel.EventSink): BroadcastReceiver? {
-        return  object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                events.success(intent.getIntExtra(intentMessageId, 0))
-            }
-        }
-    }
 }
